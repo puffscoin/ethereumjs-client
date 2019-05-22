@@ -8,7 +8,7 @@ tape('[RlpxPeer]', t => {
   const { DPT, PWP, LES } = require('ethereumjs-devp2p')
   class RLPx extends EventEmitter {}
   RLPx.prototype.connect = td.func()
-  td.replace('ethereumjs-devp2p', { DPT, PWP, LES, RLPx })
+  td.replace('puffscoinjs-devp2p', { DPT, PWP, LES, RLPx })
   const RlpxSender = td.replace('../../../lib/net/protocol/rlpxsender')
   const RlpxPeer = require('../../../lib/net/peer/rlpxpeer')
 
