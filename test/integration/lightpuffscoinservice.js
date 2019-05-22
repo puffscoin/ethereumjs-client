@@ -1,17 +1,17 @@
 'use strict'
 
 const tape = require('tape')
-const { LightEthereumService } = require('../../lib/service')
+const { LightPuffscoinService } = require('../../lib/service')
 const MockServer = require('./mocks/mockserver.js')
 const MockChain = require('./mocks/mockchain.js')
 const { defaultLogger } = require('../../lib/logging')
 defaultLogger.silent = true
 
-tape('[Integration:LightEthereumService]', async (t) => {
+tape('[Integration:LightPuffscoinService]', async (t) => {
   async function setup () {
     const server = new MockServer()
     const chain = new MockChain()
-    const service = new LightEthereumService({
+    const service = new LightPuffscoinService({
       servers: [ server ],
       chain
     })
