@@ -1,6 +1,6 @@
 const tape = require('tape')
-const Block = require('ethereumjs-block')
-const util = require('ethereumjs-util')
+const Block = require('puffscoinjs-block')
+const util = require('puffscoinjs-util')
 const { Chain } = require('../../lib/blockchain')
 const { defaultLogger } = require('../../lib/logging')
 defaultLogger.silent = true
