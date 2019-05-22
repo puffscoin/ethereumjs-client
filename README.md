@@ -118,7 +118,7 @@ That's it! Now, you should start seeing headers being downloaded to the local st
 This project will be embedded in the PuffscoinJS ecosystem and many submodules already exist and
 can be used within the project, have a look e.g. at [puffscoinjs-block](https://github.com/puffscoin/puffscoinjs-block), [puffscoinjs-vm](https://github.com/puffscoin/puffscoinjs-vm), the
 [merkle-patricia-tree](https://github.com/puffscoin/merkle-patricia-tree) or the
-[ethereumjs-devp2p](https://github.com/puffscion/puffscoinjs-devp2p) implementations.
+[puffscoinjs-devp2p](https://github.com/puffscion/puffscoinjs-devp2p) implementations.
 
 To play well together within a client context, many sub module libraries need enhancements,
 e.g. to create a common logging context. There are also larger building blocks still
