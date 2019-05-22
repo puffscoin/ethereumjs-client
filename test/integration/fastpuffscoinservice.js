@@ -1,14 +1,14 @@
 'use strict'
 
 const tape = require('tape')
-const { FastEthereumService } = require('../../lib/service')
+const { FastPuffscoinService } = require('../../lib/service')
 const MockServer = require('./mocks/mockserver.js')
 const MockChain = require('./mocks/mockchain.js')
 const BN = require('bn.js')
 const { defaultLogger } = require('../../lib/logging')
 defaultLogger.silent = true
 
-tape('[Integration:FastEthereumService]', async (t) => {
+tape('[Integration:FastPuffscoinService]', async (t) => {
   async function setup () {
     const server = new MockServer()
     const chain = new MockChain()
@@ -28,7 +28,7 @@ tape('[Integration:FastEthereumService]', async (t) => {
     await server.stop()
   }
 
-  t.test('should handle ETH requests', async (t) => {
+  t.test('should handle PWP requests', async (t) => {
     const [server, service] = await setup()
     const peer = await server.accept('peer0')
     const headers = await peer.eth.getBlockHeaders({ block: 1, max: 2 })
