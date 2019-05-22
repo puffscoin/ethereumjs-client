@@ -4,7 +4,7 @@ const EventEmitter = require('events')
 const { defaultLogger } = require('../../lib/logging')
 defaultLogger.silent = true
 
-tape('[FastEthereumService]', t => {
+tape('[FastPuffscoinService]', t => {
   class PeerPool extends EventEmitter { }
   PeerPool.prototype.open = td.func()
   td.replace('../../lib/net/peerpool', PeerPool)
@@ -21,20 +21,20 @@ tape('[FastEthereumService]', t => {
   FastSynchronizer.prototype.stop = td.func()
   FastSynchronizer.prototype.open = td.func()
   td.replace('../../lib/sync/fastsync', FastSynchronizer)
-  const FastEthereumService = require('../../lib/service/fastethereumservice')
+  const FastPuffscoinService = require('../../lib/service/fastpuffscoinservice')
 
   t.test('should initialize correctly', async (t) => {
-    let service = new FastEthereumService()
+    let service = new FastPuffscoinService()
     t.ok(service.synchronizer instanceof FastSynchronizer, 'fast mode')
     t.equals(service.name, 'eth', 'got name')
     t.end()
   })
 
   t.test('should get protocols', async (t) => {
-    let service = new FastEthereumService()
+    let service = new FastPuffscoinService()
     t.ok(service.protocols[0] instanceof EthProtocol, 'fast protocols')
     t.notOk(service.protocols[1], 'no light protocol')
-    service = new FastEthereumService({ lightserv: true })
+    service = new FastPuffscoinService({ lightserv: true })
     t.ok(service.protocols[0] instanceof EthProtocol, 'fast protocols')
     t.ok(service.protocols[1] instanceof LesProtocol, 'lightserv protocols')
     t.end()
@@ -43,7 +43,7 @@ tape('[FastEthereumService]', t => {
   t.test('should open', async (t) => {
     t.plan(3)
     const server = td.object()
-    let service = new FastEthereumService({ servers: [server] })
+    let service = new FastPuffscoinService({ servers: [server] })
     await service.open()
     td.verify(service.chain.open())
     td.verify(service.synchronizer.open())
@@ -61,7 +61,7 @@ tape('[FastEthereumService]', t => {
 
   t.test('should start/stop', async (t) => {
     const server = td.object()
-    let service = new FastEthereumService({ servers: [server] })
+    let service = new FastPuffscoinService({ servers: [server] })
     await service.start()
     td.verify(service.synchronizer.start())
     t.notOk(await service.start(), 'already started')
