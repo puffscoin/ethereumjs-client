@@ -5,7 +5,7 @@ const { defaultLogger } = require('../../../lib/logging')
 defaultLogger.silent = true
 
 tape('[RlpxPeer]', t => {
-  const { DPT, PWP, LES } = require('ethereumjs-devp2p')
+  const { DPT, PWP, LES } = require('puffscoinjs-devp2p')
   class RLPx extends EventEmitter {}
   RLPx.prototype.connect = td.func()
   td.replace('puffscoinjs-devp2p', { DPT, PWP, LES, RLPx })
