@@ -4,7 +4,7 @@ const EventEmitter = require('events')
 const { defaultLogger } = require('../../lib/logging')
 defaultLogger.silent = true
 
-tape('[LightEthereumService]', t => {
+tape('[LightPuffscoinService]', t => {
   class PeerPool extends EventEmitter { }
   PeerPool.prototype.open = td.func()
   td.replace('../../lib/net/peerpool', PeerPool)
@@ -21,17 +21,17 @@ tape('[LightEthereumService]', t => {
   LightSynchronizer.prototype.stop = td.func()
   LightSynchronizer.prototype.open = td.func()
   td.replace('../../lib/sync/lightsync', LightSynchronizer)
-  const LightEthereumService = require('../../lib/service/lightethereumservice')
+  const LightPuffscoinService = require('../../lib/service/lightpuffscoinservice')
 
   t.test('should initialize correctly', async (t) => {
-    let service = new LightEthereumService()
+    let service = new LightPuffscoinService()
     t.ok(service.synchronizer instanceof LightSynchronizer, 'light sync')
     t.equals(service.name, 'eth', 'got name')
     t.end()
   })
 
   t.test('should get protocols', async (t) => {
-    let service = new LightEthereumService()
+    let service = new LightPuffscoinService()
     t.ok(service.protocols[0] instanceof LesProtocol, 'light protocols')
     t.end()
   })
@@ -39,7 +39,7 @@ tape('[LightEthereumService]', t => {
   t.test('should open', async (t) => {
     t.plan(3)
     const server = td.object()
-    let service = new LightEthereumService({ servers: [server] })
+    let service = new LightPuffscoinService({ servers: [server] })
     await service.open()
     td.verify(service.chain.open())
     td.verify(service.synchronizer.open())
@@ -57,7 +57,7 @@ tape('[LightEthereumService]', t => {
 
   t.test('should start/stop', async (t) => {
     const server = td.object()
-    let service = new LightEthereumService({ servers: [server] })
+    let service = new LightPuffscoinService({ servers: [server] })
     await service.start()
     td.verify(service.synchronizer.start())
     t.notOk(await service.start(), 'already started')
