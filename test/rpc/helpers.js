@@ -1,5 +1,5 @@
 const jayson = require('jayson')
-const Common = require('ethereumjs-common').default
+const Common = require('puffscoinjs-common').default
 
 const Manager = require('../../lib/rpc')
 const Logger = require('../../lib/logging')
