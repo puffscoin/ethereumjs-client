@@ -1,7 +1,7 @@
 'use strict'
 
 const { Chain } = require('../../../lib/blockchain')
-const Block = require('ethereumjs-block')
+const Block = require('puffscoinjs-block')
 
 const defaultOptions = {
   height: 10
