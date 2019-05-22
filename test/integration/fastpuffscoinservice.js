@@ -12,7 +12,7 @@ tape('[Integration:FastPuffscoinService]', async (t) => {
   async function setup () {
     const server = new MockServer()
     const chain = new MockChain()
-    const service = new FastEthereumService({
+    const service = new FastPuffscoinService({
       servers: [ server ],
       lightserv: true,
       chain
