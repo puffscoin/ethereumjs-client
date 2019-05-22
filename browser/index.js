@@ -1,6 +1,6 @@
 'use strict'
 
-const Common = require('ethereumjs-common').default
+const Common = require('puffscoinjs-common').default
 const level = require('level-browserify')
 
 // Blockchain
@@ -29,8 +29,8 @@ exports.Node = require('../lib/node')
 
 // Service
 exports.Service = require('../lib/service/service')
-exports.FastEthereumService = require('../lib/service/fastethereumservice')
-exports.LightEthereumService = require('../lib/service/lightethereumservice')
+exports.FastPuffscoinService = require('../lib/service/fastpuffscoinservice')
+exports.LightPuffscoinService = require('../lib/service/lightpuffscoinservice')
 
 // Synchronizer
 exports.Synchronizer = require('../lib/sync/sync')
@@ -49,7 +49,7 @@ exports.createNode = function (args) {
     common: new Common(args.network || 'mainnet'),
     servers: [new exports.Libp2pServer({ multiaddrs: [], ...args })],
     syncmode: args.syncmode || 'fast',
-    db: level(args.db || 'ethereumjs'),
+    db: level(args.db || 'puffscoinjs'),
     logger: logger
   }
   return new exports.Node(options)
@@ -58,7 +58,7 @@ exports.createNode = function (args) {
 exports.run = function (args) {
   const node = exports.createNode(args)
   const logger = node.logger
-  logger.info('Initializing Ethereumjs client...')
+  logger.info('Initializing puffscoinjs client...')
   logger.info(`Connecting to network: ${node.common.chainName()}`)
   node.on('error', err => logger.error(err))
   node.on('listening', details => {
