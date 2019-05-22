@@ -1,10 +1,10 @@
 {
-  "name": "ethereumjs-client",
+  "name": "puffscoinjs-client",
   "version": "0.0.5",
-  "description": "EthereumJS client implementation",
+  "description": "PuffscoinJS client implementation",
   "main": "./lib/index.js",
   "bin": {
-    "ethereumjs": "./bin/cli.js"
+    "puffscoinjs": "./bin/cli.js"
   },
   "files": [
     "bin",
@@ -19,7 +19,7 @@
     "unit": "tape 'test/!(integration)/**/*.js'",
     "integration": "tape 'test/integration/**/*.js'",
     "test": "npm run lint && npm run unit && npm run integration",
-    "build": "npm run test && browserify browser/index.js -s ethereumjs -t babelify --outfile dist/bundle.js"
+    "build": "npm run test && browserify browser/index.js -s puffscoinjs -t babelify --outfile dist/bundle.js"
   },
   "husky": {
     "hooks": {
@@ -32,11 +32,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethereumjs/ethereumjs-client.git"
+    "url": "git+https://github.com/puffscoin/puffscoinjs-client.git"
   },
   "keywords": [
-    "ethereum",
-    "ethereumjs",
+    "puffscoin",
+    "puffscoinjs",
     "client",
     "blockchain",
     "light",
@@ -48,17 +48,17 @@
   "author": "Vinay Pulim (v@pulim.com)",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/ethereumjs/ethereumjs-client/issues"
+    "url": "https://github.com/puffscoin/puffscoinjs-client/issues"
   },
-  "homepage": "https://github.com/ethereumjs/ethereumjs-client#readme",
+  "homepage": "https://github.com/puffscoin/puffscoinjs-client#readme",
   "dependencies": {
     "chalk": "^2.4.1",
-    "ethereumjs-account": "^3.0.0",
-    "ethereumjs-block": "^2.2.0",
-    "ethereumjs-blockchain": "^3.4.0",
-    "ethereumjs-common": "^1.1.0",
-    "ethereumjs-devp2p": "^2.5.1",
-    "ethereumjs-util": "^6.1.0",
+    "puffscoinjs-account": "^3.0.0",
+    "puffscoinjs-block": "^2.2.0",
+    "puffscoinjs-blockchain": "^3.4.0",
+    "puffscoinjs-common": "^1.1.0",
+    "puffscoinjs-devp2p": "^2.5.1",
+    "puffscoinjs-util": "^6.1.0",
     "fs-extra": "^7.0.1",
     "jayson": "^2.0.6",
     "level": "^4.0.0",
