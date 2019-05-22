@@ -1,7 +1,7 @@
 const test = require('tape')
 
 const request = require('supertest')
-const Common = require('ethereumjs-common').default
+const Common = require('puffscoinjs-common').default
 const { startRPC, closeRPC, createManager, createNode } = require('../helpers')
 
 test('call net_version on ropsten', t => {
