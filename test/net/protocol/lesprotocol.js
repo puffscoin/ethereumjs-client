@@ -32,12 +32,12 @@ tape('[LesProtocol]', t => {
       mrc: { GetBlockHeaders: { base: 10, req: 10 } }
     }
     const p = new LesProtocol({ chain, flow })
-    chain.networkId = 1
+    chain.networkId = 420
     chain.headers = { td: new BN(100), latest: { hash: () => '0xaa', number: new BN(100) } }
     chain.genesis = { hash: '0xbb' }
     let status = p.encodeStatus()
     t.ok(
-      status.networkId === 1 &&
+      status.networkId === 420 &&
       status.headTd.toString('hex') === '64' &&
       status.headHash === '0xaa' &&
       status.headNum.toNumber() === 100 &&
@@ -51,10 +51,10 @@ tape('[LesProtocol]', t => {
       status['flowControl/MRC'][0].toString() === '2,10,10',
       'encode status'
     )
-    status = { ...status, networkId: [0x01] }
+    status = { ...status, networkId: [0x1A4] }
     status = p.decodeStatus(status)
     t.ok(
-      status.networkId === 1 &&
+      status.networkId === 420 &&
       status.headTd.toString('hex') === '64' &&
       status.headHash === '0xaa' &&
       status.headNum.toNumber() === 100 &&
