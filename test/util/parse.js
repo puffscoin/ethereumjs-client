@@ -28,7 +28,7 @@ tape('[Util/Parse]', t => {
     t.end()
   })
 
-  t.test('should parse geth params file', async (t) => {
+  t.test('should parse Gpuffs params file', async (t) => {
     const params = await parse.params(path.resolve(__dirname, 'rinkeby.json'))
     const expected = require('./params.json')
     expected.genesis.hash = Buffer.from(expected.genesis.hash)
@@ -37,7 +37,7 @@ tape('[Util/Parse]', t => {
     t.end()
   })
 
-  t.test('should parse contracts from geth params file', async (t) => {
+  t.test('should parse contracts from Gpuffs params file', async (t) => {
     const params = await parse.params(path.resolve(__dirname, 'lisinski.json'))
     const expected = 'e7fd8db206dcaf066b7c97b8a42a0abc18653613560748557ab44868652a78b6'
     t.equals(params.genesis.hash.toString('hex'), expected, 'parsed contracts correctly')
