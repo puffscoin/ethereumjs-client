@@ -1,7 +1,7 @@
 'use strict'
 
 const tape = require('tape')
-const { FastEthereumService, LightEthereumService } = require('../../lib/service')
+const { FastPuffscoinService, LightPuffscoinService } = require('../../lib/service')
 const MockServer = require('./mocks/mockserver.js')
 const MockChain = require('./mocks/mockchain.js')
 const { defaultLogger } = require('../../lib/logging')
@@ -16,14 +16,14 @@ tape('[Integration:LightSync]', async (t) => {
     const server = new MockServer({ location: options.location })
     const chain = new MockChain({ height: options.height })
     const service = options.syncmode === 'fast'
-      ? new FastEthereumService({
+      ? new FastPuffscoinService({
         servers: [ server ],
         lightserv: true,
         minPeers: 1,
         interval: options.interval || 10,
         chain
       })
-      : new LightEthereumService({
+      : new LightPuffscoinService({
         servers: [ server ],
         minPeers: 1,
         interval: options.interval || 10,
