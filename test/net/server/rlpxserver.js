@@ -105,7 +105,7 @@ tape('[RlpxServer]', t => {
     server.on('connected', peer => t.ok(peer instanceof RlpxPeer, 'connected'))
     server.on('disconnected', peer => t.equals(peer.id, '01', 'disconnected'))
     server.on('error', err => t.equals(err, 'err0', 'got error'))
-    server.on('listening', info => t.deepEquals(info, { transport: 'rlpx', url: 'enode://ff@[::]:30303' }, 'listening'))
+    server.on('listening', info => t.deepEquals(info, { transport: 'rlpx', url: 'enode://ff@[::]:31313' }, 'listening'))
     server.rlpx.emit('peer:added', rlpxPeer)
     server.peers.set('01', { id: '01' })
     server.rlpx.emit('peer:removed', rlpxPeer)
