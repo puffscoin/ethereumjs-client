@@ -5,13 +5,13 @@ const { defaultLogger } = require('../lib/logging')
 defaultLogger.silent = true
 
 tape('[Node]', t => {
-  class EthereumService extends EventEmitter {}
-  EthereumService.prototype.open = td.func()
-  EthereumService.prototype.start = td.func()
-  EthereumService.prototype.stop = td.func()
-  td.when(EthereumService.prototype.open()).thenResolve()
-  td.when(EthereumService.prototype.start()).thenResolve()
-  td.when(EthereumService.prototype.stop()).thenResolve()
+  class PuffscoinService extends EventEmitter {}
+  PuffscoinService.prototype.open = td.func()
+  PuffscoinService.prototype.start = td.func()
+  PuffscoinService.prototype.stop = td.func()
+  td.when(PuffscoinService.prototype.open()).thenResolve()
+  td.when(PuffscoinService.prototype.start()).thenResolve()
+  td.when(PuffscoinService.prototype.stop()).thenResolve()
   td.replace('../lib/service', { EthereumService })
   class Server extends EventEmitter {}
   Server.prototype.open = td.func()
@@ -24,7 +24,7 @@ tape('[Node]', t => {
 
   t.test('should initialize correctly', t => {
     const node = new Node()
-    t.ok(node.services[0] instanceof EthereumService, 'added service')
+    t.ok(node.services[0] instanceof PuffscoinService, 'added service')
     t.end()
   })
 
