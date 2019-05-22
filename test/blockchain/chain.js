@@ -34,7 +34,7 @@ tape('[Chain]', t => {
   t.test('should retrieve chain properties', async (t) => {
     const chain = new Chain() // eslint-disable-line no-new
     await chain.open()
-    t.equal(chain.networkId, 1, 'get chain.networkId')
+    t.equal(chain.networkId, 420, 'get chain.networkId')
     t.equal(chain.blocks.td.toString(10), '17179869184', 'get chain.blocks.td')
     t.equal(chain.blocks.height.toString(10), '0', 'get chain.blocks.height')
     t.equal(chain.genesis.hash.toString('hex'),
