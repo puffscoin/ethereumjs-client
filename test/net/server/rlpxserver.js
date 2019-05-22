@@ -13,7 +13,7 @@ tape('[RlpxServer]', t => {
   RLPx.prototype.listen = td.func()
   class DPT extends EventEmitter {}
   DPT.prototype.bind = td.func()
-  td.replace('ethereumjs-devp2p', { DPT, RLPx })
+  td.replace('puffscoinjs-devp2p', { DPT, RLPx })
   const RlpxServer = require('../../../lib/net/server/rlpxserver')
   td.when(RlpxPeer.prototype.accept(td.matchers.anything(), td.matchers.isA(RlpxServer))).thenResolve()
 
