@@ -12,7 +12,7 @@ tape('[Node]', t => {
   td.when(PuffscoinService.prototype.open()).thenResolve()
   td.when(PuffscoinService.prototype.start()).thenResolve()
   td.when(PuffscoinService.prototype.stop()).thenResolve()
-  td.replace('../lib/service', { EthereumService })
+  td.replace('../lib/service', { PuffscoinService })
   class Server extends EventEmitter {}
   Server.prototype.open = td.func()
   Server.prototype.start = td.func()
