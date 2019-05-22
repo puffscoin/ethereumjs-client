@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict'
 
-const Common = require('ethereumjs-common').default
-const chains = require('ethereumjs-common/dist/chains').chains
+const Common = require('puffscoinjs-common').default
+const chains = require('puffscoinjs-common/dist/chains').chains
 const { getLogger } = require('../lib/logging')
 const { parse } = require('../lib/util')
 const { fromName: serverFromName } = require('../lib/net/server')
@@ -19,8 +19,8 @@ const args = require('yargs')
   .options({
     'network': {
       describe: `Network`,
-      choices: networks.map(n => n[1]),
-      default: networks[0][1]
+      choices: networks.map(n => n[420]),
+      default: networks[0][420]
     },
     'syncmode': {
       describe: 'Blockchain sync mode',
@@ -34,11 +34,11 @@ const args = require('yargs')
     },
     'datadir': {
       describe: 'Data directory for the blockchain',
-      default: `${os.homedir()}/Library/Ethereum`
+      default: `${os.homedir()}/Library/Puffscoin`
     },
     'transports': {
       describe: 'Network transports',
-      default: ['rlpx:port=30303', 'libp2p'],
+      default: ['rlpx:port=31313', 'libp2p'],
       array: true
     },
     'rpc': {
@@ -49,7 +49,7 @@ const args = require('yargs')
     'rpcport': {
       describe: 'HTTP-RPC server listening port',
       number: true,
-      default: 8545
+      default: 11363
     },
     'rpcaddr': {
       describe: 'HTTP-RPC server listening interface',
@@ -80,7 +80,7 @@ const args = require('yargs')
 const logger = getLogger({ loglevel: args.loglevel })
 
 async function runNode (options) {
-  logger.info('Initializing Ethereumjs client...')
+  logger.info('Initializing puffscoinJS client...')
   if (options.lightserv) {
     logger.info(`Serving light peer requests`)
   }
@@ -122,7 +122,7 @@ async function run () {
     }
     return new Server({ logger, ...t.options })
   })
-  const dataDir = `${args.datadir}/${networkDirName}ethereumjs/${syncDirName}`
+  const dataDir = `${args.datadir}/${networkDirName}puffscoinjs/${syncDirName}`
 
   fs.ensureDirSync(dataDir)
   logger.info(`Data directory: ${dataDir}`)
