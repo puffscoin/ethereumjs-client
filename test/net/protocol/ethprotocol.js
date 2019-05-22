@@ -27,23 +27,23 @@ tape('[EthProtocol]', t => {
   t.test('should encode/decode status', t => {
     const chain = new Chain()
     const p = new EthProtocol({ chain })
-    chain.networkId = 1
+    chain.networkId = 420
     chain.blocks = { td: new BN(100), latest: { hash: () => '0xaa' } }
     chain.genesis = { hash: '0xbb' }
     t.deepEquals(p.encodeStatus(), {
-      networkId: 1,
+      networkId: 420,
       td: Buffer.from('64', 'hex'),
       bestHash: '0xaa',
       genesisHash: '0xbb'
     }, 'encode status')
     const status = p.decodeStatus({
-      networkId: [0x01],
+      networkId: [0x1A4],
       td: Buffer.from('64', 'hex'),
       bestHash: '0xaa',
       genesisHash: '0xbb'
     })
     t.ok(
-      status.networkId === 1 &&
+      status.networkId === 420 &&
       status.td.toNumber() === 100 &&
       status.bestHash === '0xaa' &&
       status.genesisHash === '0xbb',
