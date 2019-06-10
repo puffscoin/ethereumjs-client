@@ -12,9 +12,9 @@ tape('[FastPuffscoinService]', t => {
   const Chain = td.constructor()
   Chain.prototype.open = td.func()
   td.replace('../../lib/blockchain', { Chain })
-  const EthProtocol = td.constructor()
+  const PuffsProtocol = td.constructor()
   const LesProtocol = td.constructor()
-  td.replace('../../lib/net/protocol/ethprotocol', EthProtocol)
+  td.replace('../../lib/net/protocol/puffsprotocol', PuffsProtocol)
   td.replace('../../lib/net/protocol/lesprotocol', LesProtocol)
   class FastSynchronizer extends EventEmitter { }
   FastSynchronizer.prototype.start = td.func()
@@ -26,16 +26,16 @@ tape('[FastPuffscoinService]', t => {
   t.test('should initialize correctly', async (t) => {
     let service = new FastPuffscoinService()
     t.ok(service.synchronizer instanceof FastSynchronizer, 'fast mode')
-    t.equals(service.name, 'eth', 'got name')
+    t.equals(service.name, 'puffs', 'got name')
     t.end()
   })
 
   t.test('should get protocols', async (t) => {
     let service = new FastPuffscoinService()
-    t.ok(service.protocols[0] instanceof EthProtocol, 'fast protocols')
+    t.ok(service.protocols[0] instanceof PuffsProtocol, 'fast protocols')
     t.notOk(service.protocols[1], 'no light protocol')
     service = new FastPuffscoinService({ lightserv: true })
-    t.ok(service.protocols[0] instanceof EthProtocol, 'fast protocols')
+    t.ok(service.protocols[0] instanceof PuffsProtocol, 'fast protocols')
     t.ok(service.protocols[1] instanceof LesProtocol, 'lightserv protocols')
     t.end()
   })
