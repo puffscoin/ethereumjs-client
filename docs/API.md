@@ -258,10 +258,10 @@ Create new libp2p peer
 ```js
 const { Libp2pPeer } = require('./lib/net/peer')
 const { Chain } = require('./lib/blockchain')
-const { EthProtocol } = require('./lib/net/protocol')
+const { PuffsProtocol } = require('./lib/net/protocol')
 
 const chain = new Chain()
-const protocols = [ new EthProtocol({ chain })]
+const protocols = [ new PuffsProtocol({ chain })]
 const id = 'QmWYhkpLFDhQBwHCMSWzEebbJ5JzXWBKLJxjEuiL8wGzUu'
 const multiaddrs = [ '/ip4/192.0.2.1/tcp/12345' ]
 
@@ -340,15 +340,15 @@ the response payload.
 
 **Example**  
 ```js
-await peer.bindProtocol(ethProtocol, sender)
+await peer.bindProtocol(puffsProtocol, sender)
 // Example: Directly call message name as a method on the bound protocol
-const headers1 = await peer.eth.getBlockHeaders(1, 100, 0, 0)
+const headers1 = await peer.puffs.getBlockHeaders(1, 100, 0, 0)
 // Example: Call request() method with message name as first parameter
-const headers2 = await peer.eth.request('getBlockHeaders', 1, 100, 0, 0)
+const headers2 = await peer.puffs.request('getBlockHeaders', 1, 100, 0, 0)
 // Example: Call send() method with message name as first parameter and
 // wait for response message as an event
-peer.eth.send('getBlockHeaders', 1, 100, 0, 0)
-peer.eth.on('message', ({ data }) => console.log(`Received ${data.length} headers`))
+peer.puffs.send('getBlockHeaders', 1, 100, 0, 0)
+peer.puffs.on('message', ({ data }) => console.log(`Received ${data.length} headers`))
 ```
 <a name="module_net/peer.Peer+understands"></a>
 
@@ -394,10 +394,10 @@ Create new devp2p/rlpx peer
 ```js
 const { RlpxPeer } = require('./lib/net/peer')
 const { Chain } = require('./lib/blockchain')
-const { EthProtocol } = require('./lib/net/protocol')
+const { PuffsProtocol } = require('./lib/net/protocol')
 
 const chain = new Chain()
-const protocols = [ new EthProtocol({ chain })]
+const protocols = [ new PuffsProtocol({ chain })]
 const id = '70180a7fcca96aa013a3609fe7c23cc5c349ba82652c077be6f05b8419040560a622a4fc197a450e5e2f5f28fe6227637ccdbb3f9ba19220d1fb607505ffb455'
 const host = '192.0.2.1'
 const port = 12345
@@ -575,14 +575,14 @@ Remove peer from pool
         * [.send(name, args)](#module_net/protocol.BoundProtocol+send)
         * [.request(name, args)](#module_net/protocol.BoundProtocol+request) ⇒ <code>Promise</code>
         * [.addMethods()](#module_net/protocol.BoundProtocol+addMethods)
-    * [.EthProtocol](#module_net/protocol.EthProtocol)
-        * [new EthProtocol(options)](#new_module_net/protocol.EthProtocol_new)
-        * [.name](#module_net/protocol.EthProtocol+name) : <code>string</code>
-        * [.versions](#module_net/protocol.EthProtocol+versions) : <code>Array.&lt;number&gt;</code>
-        * [.messages](#module_net/protocol.EthProtocol+messages) : [<code>Array.&lt;Message&gt;</code>](#Protocol..Message)
-        * [.open()](#module_net/protocol.EthProtocol+open) ⇒ <code>Promise</code>
-        * [.encodeStatus()](#module_net/protocol.EthProtocol+encodeStatus) ⇒ <code>Object</code>
-        * [.decodeStatus(status)](#module_net/protocol.EthProtocol+decodeStatus) ⇒ <code>Object</code>
+    * [.PuffsProtocol](#module_net/protocol.PuffsProtocol)
+        * [new PuffsProtocol(options)](#new_module_net/protocol.PuffsProtocol_new)
+        * [.name](#module_net/protocol.PuffsProtocol+name) : <code>string</code>
+        * [.versions](#module_net/protocol.PuffsProtocol+versions) : <code>Array.&lt;number&gt;</code>
+        * [.messages](#module_net/protocol.PuffsProtocol+messages) : [<code>Array.&lt;Message&gt;</code>](#Protocol..Message)
+        * [.open()](#module_net/protocol.PuffsProtocol+open) ⇒ <code>Promise</code>
+        * [.encodeStatus()](#module_net/protocol.PuffsProtocol+encodeStatus) ⇒ <code>Object</code>
+        * [.decodeStatus(status)](#module_net/protocol.PuffsProtocol+decodeStatus) ⇒ <code>Object</code>
     * [.FlowControl](#module_net/protocol.FlowControl)
         * [.handleReply(peer, bv)](#module_net/protocol.FlowControl+handleReply)
         * [.maxRequestCount(peer, messageName)](#module_net/protocol.FlowControl+maxRequestCount) ⇒ <code>number</code>
@@ -679,24 +679,24 @@ corresponding response message
 **Kind**: instance method of [<code>BoundProtocol</code>](#module_net/protocol.BoundProtocol)  
 <a name="module_net/protocol.EthProtocol"></a>
 
-### net/protocol.EthProtocol
-Implements eth/62 and eth/63 protocols
+### net/protocol.PuffsProtocol
+Implements puffs/62 and puffs/63 protocols
 
 **Kind**: static class of [<code>net/protocol</code>](#module_net/protocol)  
 
-* [.EthProtocol](#module_net/protocol.EthProtocol)
-    * [new EthProtocol(options)](#new_module_net/protocol.EthProtocol_new)
-    * [.name](#module_net/protocol.EthProtocol+name) : <code>string</code>
-    * [.versions](#module_net/protocol.EthProtocol+versions) : <code>Array.&lt;number&gt;</code>
-    * [.messages](#module_net/protocol.EthProtocol+messages) : [<code>Array.&lt;Message&gt;</code>](#Protocol..Message)
-    * [.open()](#module_net/protocol.EthProtocol+open) ⇒ <code>Promise</code>
-    * [.encodeStatus()](#module_net/protocol.EthProtocol+encodeStatus) ⇒ <code>Object</code>
-    * [.decodeStatus(status)](#module_net/protocol.EthProtocol+decodeStatus) ⇒ <code>Object</code>
+* [.PuffsProtocol](#module_net/protocol.PuffsProtocol)
+    * [new PuffsProtocol(options)](#new_module_net/protocol.PuffsProtocol_new)
+    * [.name](#module_net/protocol.PuffsProtocol+name) : <code>string</code>
+    * [.versions](#module_net/protocol.PuffsProtocol+versions) : <code>Array.&lt;number&gt;</code>
+    * [.messages](#module_net/protocol.PuffsProtocol+messages) : [<code>Array.&lt;Message&gt;</code>](#Protocol..Message)
+    * [.open()](#module_net/protocol.PuffsProtocol+open) ⇒ <code>Promise</code>
+    * [.encodeStatus()](#module_net/protocol.PuffsProtocol+encodeStatus) ⇒ <code>Object</code>
+    * [.decodeStatus(status)](#module_net/protocol.PuffsProtocol+decodeStatus) ⇒ <code>Object</code>
 
-<a name="new_module_net/protocol.EthProtocol_new"></a>
+<a name="new_module_net/protocol.PuffsProtocol_new"></a>
 
-#### new EthProtocol(options)
-Create eth protocol
+#### new PuffsProtocol(options)
+Create puffs protocol
 
 
 | Param | Type | Default | Description |
@@ -706,42 +706,42 @@ Create eth protocol
 | [options.timeout] | <code>number</code> | <code>5000</code> | handshake timeout in ms |
 | [options.logger] | <code>Logger</code> |  | logger instance |
 
-<a name="module_net/protocol.EthProtocol+name"></a>
+<a name="module_net/protocol.PuffsProtocol+name"></a>
 
-#### ethProtocol.name : <code>string</code>
+#### puffsProtocol.name : <code>string</code>
 Name of protocol
 
-**Kind**: instance property of [<code>EthProtocol</code>](#module_net/protocol.EthProtocol)  
-<a name="module_net/protocol.EthProtocol+versions"></a>
+**Kind**: instance property of [<code>PuffsProtocol</code>](#module_net/protocol.PuffsProtocol)  
+<a name="module_net/protocol.PuffsProtocol+versions"></a>
 
-#### ethProtocol.versions : <code>Array.&lt;number&gt;</code>
+#### puffsProtocol.versions : <code>Array.&lt;number&gt;</code>
 Protocol versions supported
 
-**Kind**: instance property of [<code>EthProtocol</code>](#module_net/protocol.EthProtocol)  
-<a name="module_net/protocol.EthProtocol+messages"></a>
+**Kind**: instance property of [<code>PuffsProtocol</code>](#module_net/protocol.PuffsProtocol)  
+<a name="module_net/protocol.PuffsProtocol+messages"></a>
 
-#### ethProtocol.messages : [<code>Array.&lt;Message&gt;</code>](#Protocol..Message)
+#### puffsProtocol.messages : [<code>Array.&lt;Message&gt;</code>](#Protocol..Message)
 Messages defined by this protocol
 
-**Kind**: instance property of [<code>EthProtocol</code>](#module_net/protocol.EthProtocol)  
-<a name="module_net/protocol.EthProtocol+open"></a>
+**Kind**: instance property of [<code>PuffsProtocol</code>](#module_net/protocol.PuffsProtocol)  
+<a name="module_net/protocol.PuffsProtocol+open"></a>
 
-#### ethProtocol.open() ⇒ <code>Promise</code>
+#### puffsProtocol.open() ⇒ <code>Promise</code>
 Opens protocol and any associated dependencies
 
-**Kind**: instance method of [<code>EthProtocol</code>](#module_net/protocol.EthProtocol)  
-<a name="module_net/protocol.EthProtocol+encodeStatus"></a>
+**Kind**: instance method of [<code>PuffsProtocol</code>](#module_net/protocol.PuffsProtocol)  
+<a name="module_net/protocol.PuffsProtocol+encodeStatus"></a>
 
-#### ethProtocol.encodeStatus() ⇒ <code>Object</code>
-Encodes status into ETH status message payload
+#### puffsProtocol.encodeStatus() ⇒ <code>Object</code>
+Encodes status into PUFFS status message payload
 
-**Kind**: instance method of [<code>EthProtocol</code>](#module_net/protocol.EthProtocol)  
-<a name="module_net/protocol.EthProtocol+decodeStatus"></a>
+**Kind**: instance method of [<code>PuffsProtocol</code>](#module_net/protocol.PuffsProtocol)  
+<a name="module_net/protocol.PuffsProtocol+decodeStatus"></a>
 
-#### ethProtocol.decodeStatus(status) ⇒ <code>Object</code>
-Decodes ETH status message payload into a status object
+#### puffsProtocol.decodeStatus(status) ⇒ <code>Object</code>
+Decodes PUFFS status message payload into a status object
 
-**Kind**: instance method of [<code>EthProtocol</code>](#module_net/protocol.EthProtocol)  
+**Kind**: instance method of [<code>PuffsProtocol</code>](#module_net/protocol.PuffsProtocol)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -863,7 +863,7 @@ Encodes status into LES status message payload
 <a name="module_net/protocol.LesProtocol+decodeStatus"></a>
 
 #### lesProtocol.decodeStatus(status) ⇒ <code>Object</code>
-Decodes ETH status message payload into a status object
+Decodes PUFFS status message payload into a status object
 
 **Kind**: instance method of [<code>LesProtocol</code>](#module_net/protocol.LesProtocol)  
 
