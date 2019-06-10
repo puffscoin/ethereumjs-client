@@ -18,13 +18,13 @@ function checkError (expectedCode, expectedMessage) {
   }
 }
 
-test('call eth_getBlockByHash with valid arguments', t => {
+test('call puffs_getBlockByHash with valid arguments', t => {
   const manager = createManager(createNode())
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByHash',
+    method: 'puffs_getBlockByHash',
     params: [
       '0x910abca1728c53e8d6df870dd7af5352e974357dc58205dea1676be17ba6becf',
       true
@@ -48,13 +48,13 @@ test('call eth_getBlockByHash with valid arguments', t => {
     })
 })
 
-test('call eth_getBlockByHash with false for second argument', t => {
+test('call puffs_getBlockByHash with false for second argument', t => {
   const manager = createManager(createNode())
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByHash',
+    method: 'puffs_getBlockByHash',
     params: [
       '0xdc0818cf78f21a8e70579cb46a43643f78291264dda342ae31049421c82d21ae',
       false
@@ -81,13 +81,13 @@ test('call eth_getBlockByHash with false for second argument', t => {
     })
 })
 
-test('call eth_getBlockByHash with invalid block hash without 0x', t => {
+test('call puffs_getBlockByHash with invalid block hash without 0x', t => {
   const manager = createManager(createNode())
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByHash',
+    method: 'puffs_getBlockByHash',
     params: ['WRONG BLOCK NUMBER', true],
     id: 1
   }
@@ -108,13 +108,13 @@ test('call eth_getBlockByHash with invalid block hash without 0x', t => {
     })
 })
 
-test('call eth_getBlockByHash with invalid hex string as block hash', t => {
+test('call puffs_getBlockByHash with invalid hex string as block hash', t => {
   const manager = createManager(createNode())
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByHash',
+    method: 'puffs_getBlockByHash',
     params: ['0xWRONG BLOCK NUMBER', true],
     id: 1
   }
@@ -135,13 +135,13 @@ test('call eth_getBlockByHash with invalid hex string as block hash', t => {
     })
 })
 
-test('call eth_getBlockByHash without second parameter', t => {
+test('call puffs_getBlockByHash without second parameter', t => {
   const manager = createManager(createNode())
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByHash',
+    method: 'puffs_getBlockByHash',
     params: ['0x0'],
     id: 1
   }
@@ -163,13 +163,13 @@ test('call eth_getBlockByHash without second parameter', t => {
     })
 })
 
-test('call eth_getBlockByHash with invalid second parameter', t => {
+test('call puffs_getBlockByHash with invalid second parameter', t => {
   const manager = createManager(createNode())
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByHash',
+    method: 'puffs_getBlockByHash',
     params: ['0x0', 'INVALID PARAMETER'],
     id: 1
   }
