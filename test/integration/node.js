@@ -18,10 +18,10 @@ tape('[Integration:Node]', t => {
       t.deepEqual(details, { transport: 'mock', url: 'mock://127.0.0.1' }, 'server listening')
     })
     await node.open()
-    node.service('eth').synchronizer.interval = 100
-    node.service('eth').emit('error', 'err0')
+    node.service('puffs').synchronizer.interval = 100
+    node.service('puffs').emit('error', 'err0')
     await node.start()
-    t.ok(node.service('eth').synchronizer.running, 'sync running')
+    t.ok(node.service('puffs').synchronizer.running, 'sync running')
     await node.stop()
     t.pass('node stopped')
   })
