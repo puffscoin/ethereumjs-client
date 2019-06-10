@@ -32,13 +32,13 @@ function checkError (expectedCode, expectedMessage) {
   }
 }
 
-test('call eth_getBlockByNumber with valid arguments', t => {
+test('call puffs_getBlockByNumber with valid arguments', t => {
   const manager = createManager(createNode({ blockchain: createBlockchain() }))
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByNumber',
+    method: 'puffs_getBlockByNumber',
     params: ['0x1', true],
     id: 1
   }
@@ -59,13 +59,13 @@ test('call eth_getBlockByNumber with valid arguments', t => {
     })
 })
 
-test('call eth_getBlockByNumber with false for second argument', t => {
+test('call puffs_getBlockByNumber with false for second argument', t => {
   const manager = createManager(createNode({ blockchain: createBlockchain() }))
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByNumber',
+    method: 'puffs_getBlockByNumber',
     params: ['0x1', false],
     id: 1
   }
@@ -89,13 +89,13 @@ test('call eth_getBlockByNumber with false for second argument', t => {
     })
 })
 
-test('call eth_getBlockByNumber with invalid block number', t => {
+test('call puffs_getBlockByNumber with invalid block number', t => {
   const manager = createManager(createNode({ blockchain: createBlockchain() }))
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByNumber',
+    method: 'puffs_getBlockByNumber',
     params: ['WRONG BLOCK NUMBER', true],
     id: 1
   }
@@ -116,13 +116,13 @@ test('call eth_getBlockByNumber with invalid block number', t => {
     })
 })
 
-test('call eth_getBlockByNumber without second parameter', t => {
+test('call puffs_getBlockByNumber without second parameter', t => {
   const manager = createManager(createNode({ blockchain: createBlockchain() }))
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByNumber',
+    method: 'puffs_getBlockByNumber',
     params: ['0x0'],
     id: 1
   }
@@ -144,13 +144,13 @@ test('call eth_getBlockByNumber without second parameter', t => {
     })
 })
 
-test('call eth_getBlockByNumber with invalid second parameter', t => {
+test('call puffs_getBlockByNumber with invalid second parameter', t => {
   const manager = createManager(createNode({ blockchain: createBlockchain() }))
   const server = startRPC(manager.getMethods())
 
   const req = {
     jsonrpc: '2.0',
-    method: 'eth_getBlockByNumber',
+    method: 'puffs_getBlockByNumber',
     params: ['0x0', 'INVALID PARAMETER'],
     id: 1
   }
