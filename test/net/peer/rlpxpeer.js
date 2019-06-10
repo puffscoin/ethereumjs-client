@@ -20,11 +20,11 @@ tape('[RlpxPeer]', t => {
   })
 
   t.test('should compute capabilities', t => {
-    const protocols = [ { name: 'eth', versions: [62, 63] }, { name: 'les', versions: [2] } ]
+    const protocols = [ { name: 'puffs', versions: [62, 63] }, { name: 'les', versions: [2] } ]
     const caps = RlpxPeer.capabilities(protocols).map(({ name, version, length }) => ({ name, version, length }))
     t.deepEquals(caps, [
-      { name: 'eth', version: 62, length: 8 },
-      { name: 'eth', version: 63, length: 17 },
+      { name: 'puffs', version: 62, length: 8 },
+      { name: 'puffs', version: 63, length: 17 },
       { name: 'les', version: 2, length: 21 }
     ], 'correct capabilities')
     t.end()
