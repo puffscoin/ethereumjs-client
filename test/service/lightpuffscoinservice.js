@@ -26,7 +26,7 @@ tape('[LightPuffscoinService]', t => {
   t.test('should initialize correctly', async (t) => {
     let service = new LightPuffscoinService()
     t.ok(service.synchronizer instanceof LightSynchronizer, 'light sync')
-    t.equals(service.name, 'eth', 'got name')
+    t.equals(service.name, 'puffs', 'got name')
     t.end()
   })
 
