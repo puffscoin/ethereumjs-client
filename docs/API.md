@@ -677,7 +677,7 @@ Add a methods to the bound protocol for each protocol message that has a
 corresponding response message
 
 **Kind**: instance method of [<code>BoundProtocol</code>](#module_net/protocol.BoundProtocol)  
-<a name="module_net/protocol.EthProtocol"></a>
+<a name="module_net/protocol.PuffsProtocol"></a>
 
 ### net/protocol.PuffsProtocol
 Implements puffs/62 and puffs/63 protocols
@@ -1063,7 +1063,7 @@ Creates a new DevP2P/Rlpx protocol sender
 
 | Param | Type | Description |
 | --- | --- | --- |
-| rlpxProtocol | <code>Object</code> | protocol object from ethereumjs-devp2p |
+| rlpxProtocol | <code>Object</code> | protocol object from puffscoinjs-devp2p |
 
 <a name="module_net/protocol.RlpxSender+sendStatus"></a>
 
@@ -1368,7 +1368,7 @@ RPC server manager
 
 #### rpcManager.getMethods() ⇒ <code>Object</code>
 gets methods for all modules which concat with underscore "_"
-e.g. convert getBlockByNumber() in eth module to { eth_getBlockByNumber }
+e.g. convert getBlockByNumber() in puffs module to { puffs_getBlockByNumber }
 
 **Kind**: instance method of [<code>RPCManager</code>](#module_rpc.RPCManager)  
 **Returns**: <code>Object</code> - methods  
@@ -1436,22 +1436,22 @@ middleware for parameters validation
 ## service
 
 * [service](#module_service)
-    * [.EthereumService](#module_service.EthereumService)
-        * [new EthereumService(options)](#new_module_service.EthereumService_new)
-        * [.name](#module_service.EthereumService+name) : <code>string</code>
-        * [.open()](#module_service.EthereumService+open) ⇒ <code>Promise</code>
-        * [.start()](#module_service.EthereumService+start) ⇒ <code>Promise</code>
-        * [.stop()](#module_service.EthereumService+stop) ⇒ <code>Promise</code>
-    * [.FastEthereumService](#module_service.FastEthereumService)
-        * [new FastEthereumService(options)](#new_module_service.FastEthereumService_new)
-        * [.protocols](#module_service.FastEthereumService+protocols) : <code>Array.&lt;Protocol&gt;</code>
-        * [.handle(message, protocol, peer)](#module_service.FastEthereumService+handle) ⇒ <code>Promise</code>
-        * [.handleEth(message, peer)](#module_service.FastEthereumService+handleEth) ⇒ <code>Promise</code>
-        * [.handleLes(message, peer)](#module_service.FastEthereumService+handleLes) ⇒ <code>Promise</code>
-    * [.LightEthereumService](#module_service.LightEthereumService)
-        * [new LightEthereumService(options)](#new_module_service.LightEthereumService_new)
-        * [.protocols](#module_service.LightEthereumService+protocols) : <code>Array.&lt;Protocol&gt;</code>
-        * [.handle(message, protocol, peer)](#module_service.LightEthereumService+handle) ⇒ <code>Promise</code>
+    * [.PuffscoinService](#module_service.PuffscoinService)
+        * [new PuffscoinService(options)](#new_module_service.PuffscoinService_new)
+        * [.name](#module_service.PuffscoinService+name) : <code>string</code>
+        * [.open()](#module_service.PuffscoinService+open) ⇒ <code>Promise</code>
+        * [.start()](#module_service.PuffscoinService+start) ⇒ <code>Promise</code>
+        * [.stop()](#module_service.PuffscoinService+stop) ⇒ <code>Promise</code>
+    * [.FastPuffscoinService](#module_service.FastPuffscoinService)
+        * [new FastEthereumService(options)](#new_module_service.FastPuffscoinService_new)
+        * [.protocols](#module_service.FastPuffscoinService+protocols) : <code>Array.&lt;Protocol&gt;</code>
+        * [.handle(message, protocol, peer)](#module_service.FastPuffscoinService+handle) ⇒ <code>Promise</code>
+        * [.handleEth(message, peer)](#module_service.FastPuffscoinService+handlePuffs) ⇒ <code>Promise</code>
+        * [.handleLes(message, peer)](#module_service.FastPuffscoinService+handleLes) ⇒ <code>Promise</code>
+    * [.LightPuffscoinService](#module_service.LightPuffscoinService)
+        * [new LightPuffscoinService(options)](#new_module_service.LightPuffscoinService_new)
+        * [.protocols](#module_service.LightPuffscoinService+protocols) : <code>Array.&lt;Protocol&gt;</code>
+        * [.handle(message, protocol, peer)](#module_service.LightPuffscoinService+handle) ⇒ <code>Promise</code>
     * [.Service](#module_service.Service)
         * [new Service(options)](#new_module_service.Service_new)
         * [.name](#module_service.Service+name) : <code>string</code>
