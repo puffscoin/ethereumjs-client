@@ -1,5 +1,5 @@
 const tape = require('tape')
-const { EthProtocol } = require('../../lib/net/protocol')
+const { PuffsProtocol } = require('../../lib/net/protocol')
 const PeerPool = require('../../lib/net/peerpool')
 const MockServer = require('./mocks/mockserver.js')
 const MockChain = require('./mocks/mockchain.js')
@@ -57,7 +57,7 @@ tape('[Integration:PeerPool]', async (t) => {
     t.plan(3)
     const chain = new MockChain()
     await chain.open()
-    const protocols = [ new EthProtocol({ chain }) ]
+    const protocols = [ new PuffsProtocol({ chain }) ]
     const [server, pool] = await setup(protocols)
     pool.on('added', peer => t.equal(peer.id, 'peer0', 'added peer'))
     pool.on('message', (msg, proto, peer) => {
