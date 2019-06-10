@@ -28,17 +28,17 @@ module.exports = {
   createNode (nodeConfig) {
     const chain = new Chain({ blockchain: blockChain({}) })
     chain.opened = true
-    const defaultNodeConfig = { blockchain: chain, opened: true, commonChain: new Common('mainnet'), ethProtocolVersions: [63] }
+    const defaultNodeConfig = { blockchain: chain, opened: true, commonChain: new Common('mainnet'), puffsProtocolVersions: [63] }
     const trueNodeConfig = { ...defaultNodeConfig, ...nodeConfig }
     return {
       services: [
         {
-          name: 'eth',
+          name: 'puffs',
           chain: trueNodeConfig.blockchain,
           pool: { peers: [1, 2, 3] },
           protocols: [{
-            name: 'eth',
-            versions: trueNodeConfig.ethProtocolVersions
+            name: 'puffs',
+            versions: trueNodeConfig.puffsProtocolVersions
           }]
         }
       ],
