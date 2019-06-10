@@ -16,7 +16,7 @@ exports.PeerPool = require('../lib/net/peerpool')
 
 // Protocol
 exports.Protocol = require('../lib/net/protocol/protocol')
-exports.EthProtocol = require('../lib/net/protocol/ethprotocol')
+exports.PuffsProtocol = require('../lib/net/protocol/puffsprotocol')
 exports.LesProtocol = require('../lib/net/protocol/lesprotocol')
 exports.FlowControl = require('../lib/net/protocol/flowcontrol')
 
