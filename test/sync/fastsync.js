@@ -16,7 +16,7 @@ tape('[FastSynchronizer]', t => {
   t.test('should initialize correctly', async (t) => {
     const pool = new PeerPool()
     const sync = new FastSynchronizer({ pool })
-    pool.emit('added', { eth: true })
+    pool.emit('added', { puffs: true })
     t.equals(sync.type, 'fast', 'fast type')
     t.end()
   })
@@ -42,9 +42,9 @@ tape('[FastSynchronizer]', t => {
   t.test('should get height', async (t) => {
     const pool = new PeerPool()
     const sync = new FastSynchronizer({ pool })
-    const peer = { eth: { getBlockHeaders: td.func(), status: { bestHash: 'hash' } } }
+    const peer = { puffs: { getBlockHeaders: td.func(), status: { bestHash: 'hash' } } }
     const headers = [{ number: 5 }]
-    td.when(peer.eth.getBlockHeaders({ block: 'hash', max: 1 })).thenResolve(headers)
+    td.when(peer.puffs.getBlockHeaders({ block: 'hash', max: 1 })).thenResolve(headers)
     const latest = await sync.latest(peer)
     t.equals(new BN(latest.number).toNumber(), 5, 'got height')
     t.end()
@@ -56,13 +56,13 @@ tape('[FastSynchronizer]', t => {
     sync.height = td.func()
     sync.chain = { blocks: { td: new BN(1) } }
     const peers = [
-      { eth: { status: { td: new BN(1) } }, inbound: false },
-      { eth: { status: { td: new BN(2) } }, inbound: false }
+      { puffs: { status: { td: new BN(1) } }, inbound: false },
+      { puffs: { status: { td: new BN(2) } }, inbound: false }
     ]
     sync.pool = { peers }
     sync.forceSync = true
-    td.when(sync.height(peers[0])).thenDo(peer => Promise.resolve(peer.eth.status.td))
-    td.when(sync.height(peers[1])).thenDo(peer => Promise.resolve(peer.eth.status.td))
+    td.when(sync.height(peers[0])).thenDo(peer => Promise.resolve(peer.puffs.status.td))
+    td.when(sync.height(peers[1])).thenDo(peer => Promise.resolve(peer.puffs.status.td))
     t.equals(sync.best(), peers[1], 'found best')
     t.end()
   })
