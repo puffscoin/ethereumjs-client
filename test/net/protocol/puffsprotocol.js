@@ -1,13 +1,13 @@
 const tape = require('tape-catch')
 const td = require('testdouble')
-const { EthProtocol } = require('../../../lib/net/protocol')
+const { PuffsProtocol } = require('../../../lib/net/protocol')
 const BN = require('bn.js')
 
-tape('[EthProtocol]', t => {
+tape('[PuffsProtocol]', t => {
   const Chain = td.replace('../../../lib/blockchain/chain')
 
   t.test('should get properties', t => {
-    const p = new EthProtocol({})
+    const p = new PuffsProtocol({})
     t.ok(typeof p.name === 'string', 'get name')
     t.ok(Array.isArray(p.versions), 'get versions')
     t.ok(Array.isArray(p.messages), 'get messages')
@@ -16,7 +16,7 @@ tape('[EthProtocol]', t => {
 
   t.test('should open correctly', async (t) => {
     const chain = new Chain()
-    const p = new EthProtocol({ chain })
+    const p = new PuffsProtocol({ chain })
     await p.open()
     td.verify(chain.open())
     t.ok(p.opened, 'opened is true')
@@ -26,7 +26,7 @@ tape('[EthProtocol]', t => {
 
   t.test('should encode/decode status', t => {
     const chain = new Chain()
-    const p = new EthProtocol({ chain })
+    const p = new PuffsProtocol({ chain })
     chain.networkId = 420
     chain.blocks = { td: new BN(100), latest: { hash: () => '0xaa' } }
     chain.genesis = { hash: '0xbb' }
